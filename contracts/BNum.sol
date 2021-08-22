@@ -15,6 +15,16 @@ pragma solidity 0.5.12;
 
 import "./BConst.sol";
 
+// 函数可以声明为 pure ，在这种情况下，承诺不读取或修改状态。
+
+// 除了上面解释的状态修改语句列表之外，以下被认为是从状态中读取：
+
+// 读取状态变量。
+// 访问 this.balance 或者 <address>.balance。
+// 访问 block，tx， msg 中任意成员 （除 msg.sig 和 msg.data 之外）。
+// 调用任何未标记为 pure 的函数。
+// 使用包含某些操作码的内联汇编。
+
 contract BNum is BConst {
 
     function btoi(uint a)

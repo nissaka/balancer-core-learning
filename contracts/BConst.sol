@@ -15,6 +15,8 @@ pragma solidity 0.5.12;
 
 import "./BColor.sol";
 
+// Solidity通过复制包括多态性的代码来支持多重继承。
+// https://balancer.gitbook.io/balancer/core-concepts/protocol/limitations
 contract BConst is BBronze {
     uint public constant BONE              = 10**18;
 

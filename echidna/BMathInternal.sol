@@ -3,83 +3,68 @@
  This helps Echidna to focus on some specific properties.
 */
 
-
-
 pragma solidity 0.5.12;
+
 contract BColor {
-    function getColor()
-        internal view
-        returns (bytes32);
+    function getColor() internal view returns (bytes32);
 }
+
 contract BBronze is BColor {
-    function getColor()
-        internal view
-        returns (bytes32) {
-            return bytes32("BRONZE");
-        }
+    function getColor() internal view returns (bytes32) {
+        return bytes32("BRONZE");
+    }
 }
+
 contract BConst is BBronze {
-    uint internal constant BONE              = 10**18;
+    uint256 internal constant BONE = 10**18;
 
-    uint internal constant MAX_BOUND_TOKENS  = 8;
-    uint internal constant BPOW_PRECISION    = BONE / 10**10;
+    uint256 internal constant MAX_BOUND_TOKENS = 8;
+    uint256 internal constant BPOW_PRECISION = BONE / 10**10;
 
-    uint internal constant MIN_FEE           = BONE / 10**6;
-    uint internal constant MAX_FEE           = BONE / 10;
-    uint internal constant EXIT_FEE          = BONE / 10000;
+    uint256 internal constant MIN_FEE = BONE / 10**6;
+    uint256 internal constant MAX_FEE = BONE / 10;
+    uint256 internal constant EXIT_FEE = BONE / 10000;
 
-    uint internal constant MIN_WEIGHT        = BONE;
-    uint internal constant MAX_WEIGHT        = BONE * 50;
-    uint internal constant MAX_TOTAL_WEIGHT  = BONE * 50;
-    uint internal constant MIN_BALANCE       = BONE / 10**12;
-    uint internal constant MAX_BALANCE       = BONE * 10**12;
+    uint256 internal constant MIN_WEIGHT = BONE;
+    uint256 internal constant MAX_WEIGHT = BONE * 50;
+    uint256 internal constant MAX_TOTAL_WEIGHT = BONE * 50;
+    uint256 internal constant MIN_BALANCE = BONE / 10**12;
+    uint256 internal constant MAX_BALANCE = BONE * 10**12;
 
-    uint internal constant MIN_POOL_SUPPLY   = BONE;
+    uint256 internal constant MIN_POOL_SUPPLY = BONE;
 
-    uint internal constant MIN_BPOW_BASE     = 1 wei;
-    uint internal constant MAX_BPOW_BASE     = (2 * BONE) - 1 wei;
+    uint256 internal constant MIN_BPOW_BASE = 1 wei;
+    uint256 internal constant MAX_BPOW_BASE = (2 * BONE) - 1 wei;
 
-    uint internal constant MAX_IN_RATIO      = BONE / 2;
-    uint internal constant MAX_OUT_RATIO     = (BONE / 3) + 1 wei;
-
+    uint256 internal constant MAX_IN_RATIO = BONE / 2;
+    uint256 internal constant MAX_OUT_RATIO = (BONE / 3) + 1 wei;
 }
-contract BNum is BConst {
 
-    function btoi(uint a)
-        internal pure 
-        returns (uint)
-    {
+contract BNum is BConst {
+    function btoi(uint256 a) internal pure returns (uint256) {
         return a / BONE;
     }
 
-    function bfloor(uint a)
-        internal pure
-        returns (uint)
-    {
+    function bfloor(uint256 a) internal pure returns (uint256) {
         return btoi(a) * BONE;
     }
 
-    function badd(uint a, uint b)
-        internal pure
-        returns (uint)
-    {
-        uint c = a + b;
+    function badd(uint256 a, uint256 b) internal pure returns (uint256) {
+        uint256 c = a + b;
         require(c >= a, "ERR_ADD_OVERFLOW");
         return c;
     }
 
-    function bsub(uint a, uint b)
-        internal pure
-        returns (uint)
-    {
-        (uint c, bool flag) = bsubSign(a, b);
+    function bsub(uint256 a, uint256 b) internal pure returns (uint256) {
+        (uint256 c, bool flag) = bsubSign(a, b);
         require(!flag, "ERR_SUB_UNDERFLOW");
         return c;
     }
 
-    function bsubSign(uint a, uint b)
-        internal pure
-        returns (uint, bool)
+    function bsubSign(uint256 a, uint256 b)
+        internal
+        pure
+        returns (uint256, bool)
     {
         if (a >= b) {
             return (a - b, false);
@@ -88,37 +73,28 @@ contract BNum is BConst {
         }
     }
 
-    function bmul(uint a, uint b)
-        internal pure
-        returns (uint)
-    {
-        uint c0 = a * b;
+    function bmul(uint256 a, uint256 b) internal pure returns (uint256) {
+        uint256 c0 = a * b;
         require(a == 0 || c0 / a == b, "ERR_MUL_OVERFLOW");
-        uint c1 = c0 + (BONE / 2);
+        uint256 c1 = c0 + (BONE / 2);
         require(c1 >= c0, "ERR_MUL_OVERFLOW");
-        uint c2 = c1 / BONE;
+        uint256 c2 = c1 / BONE;
         return c2;
     }
 
-    function bdiv(uint a, uint b)
-        internal pure
-        returns (uint)
-    {
+    function bdiv(uint256 a, uint256 b) internal pure returns (uint256) {
         require(b != 0, "ERR_DIV_ZERO");
-        uint c0 = a * BONE;
+        uint256 c0 = a * BONE;
         require(a == 0 || c0 / a == BONE, "ERR_DIV_INTERNAL"); // bmul overflow
-        uint c1 = c0 + (b / 2);
+        uint256 c1 = c0 + (b / 2);
         require(c1 >= c0, "ERR_DIV_INTERNAL"); //  badd require
-        uint c2 = c1 / b;
+        uint256 c2 = c1 / b;
         return c2;
     }
 
     // DSMath.wpow
-    function bpowi(uint a, uint n)
-        internal pure
-        returns (uint)
-    {
-        uint z = n % 2 != 0 ? a : BONE;
+    function bpowi(uint256 a, uint256 n) internal pure returns (uint256) {
+        uint256 z = n % 2 != 0 ? a : BONE;
 
         for (n /= 2; n != 0; n /= 2) {
             a = bmul(a, a);
@@ -133,45 +109,42 @@ contract BNum is BConst {
     // Compute b^(e.w) by splitting it into (b^e)*(b^0.w).
     // Use `bpowi` for `b^e` and `bpowK` for k iterations
     // of approximation of b^0.w
-    function bpow(uint base, uint exp)
-        internal pure
-        returns (uint)
-    {
+    function bpow(uint256 base, uint256 exp) internal pure returns (uint256) {
         require(base >= MIN_BPOW_BASE, "ERR_BPOW_BASE_TOO_LOW");
         require(base <= MAX_BPOW_BASE, "ERR_BPOW_BASE_TOO_HIGH");
 
-        uint whole  = bfloor(exp);   
-        uint remain = bsub(exp, whole);
+        uint256 whole = bfloor(exp);
+        uint256 remain = bsub(exp, whole);
 
-        uint wholePow = bpowi(base, btoi(whole));
+        uint256 wholePow = bpowi(base, btoi(whole));
 
         if (remain == 0) {
             return wholePow;
         }
 
-        uint partialResult = bpowApprox(base, remain, BPOW_PRECISION);
+        uint256 partialResult = bpowApprox(base, remain, BPOW_PRECISION);
         return bmul(wholePow, partialResult);
     }
 
-    function bpowApprox(uint base, uint exp, uint precision)
-        internal pure
-        returns (uint)
-    {
+    function bpowApprox(
+        uint256 base,
+        uint256 exp,
+        uint256 precision
+    ) internal pure returns (uint256) {
         // term 0:
-        uint a     = exp;
-        (uint x, bool xneg)  = bsubSign(base, BONE);
-        uint term = BONE;
-        uint sum   = term;
+        uint256 a = exp;
+        (uint256 x, bool xneg) = bsubSign(base, BONE);
+        uint256 term = BONE;
+        uint256 sum = term;
         bool negative = false;
 
-
-        // term(k) = numer / denom 
+        // term(k) = numer / denom
         //         = (product(a - i - 1, i=1-->k) * x^k) / (k!)
         // each iteration, multiply previous term by (a-(k-1)) * x / k
         // continue until term is less than precision
-        for (uint i = 1; term >= precision; i++) {
-            uint bigK = i * BONE;
-            (uint c, bool cneg) = bsubSign(a, bsub(bigK, BONE));
+        for (uint256 i = 1; term >= precision; i++) {
+            uint256 bigK = i * BONE;
+            (uint256 c, bool cneg) = bsubSign(a, bsub(bigK, BONE));
             term = bmul(term, bmul(c, x));
             term = bdiv(term, bigK);
             if (term == 0) break;
@@ -187,8 +160,8 @@ contract BNum is BConst {
 
         return sum;
     }
-
 }
+
 contract BMath is BBronze, BConst, BNum {
     /**********************************************************************************************
     // calcSpotPrice                                                                             //
@@ -200,20 +173,17 @@ contract BMath is BBronze, BConst, BNum {
     // sF = swapFee                                                                              //
     **********************************************************************************************/
     function calcSpotPrice(
-        uint tokenBalanceIn,
-        uint tokenWeightIn,
-        uint tokenBalanceOut,
-        uint tokenWeightOut,
-        uint swapFee
-    )
-        internal pure
-        returns (uint spotPrice)
-    {
-        uint numer = bdiv(tokenBalanceIn, tokenWeightIn);
-        uint denom = bdiv(tokenBalanceOut, tokenWeightOut);
-        uint ratio = bdiv(numer, denom);
-        uint scale = bdiv(BONE, bsub(BONE, swapFee));
-        return  (spotPrice = bmul(ratio, scale));
+        uint256 tokenBalanceIn,
+        uint256 tokenWeightIn,
+        uint256 tokenBalanceOut,
+        uint256 tokenWeightOut,
+        uint256 swapFee
+    ) internal pure returns (uint256 spotPrice) {
+        uint256 numer = bdiv(tokenBalanceIn, tokenWeightIn);
+        uint256 denom = bdiv(tokenBalanceOut, tokenWeightOut);
+        uint256 ratio = bdiv(numer, denom);
+        uint256 scale = bdiv(BONE, bsub(BONE, swapFee));
+        return (spotPrice = bmul(ratio, scale));
     }
 
     /**********************************************************************************************
@@ -227,22 +197,19 @@ contract BMath is BBronze, BConst, BNum {
     // sF = swapFee                                                                              //
     **********************************************************************************************/
     function calcOutGivenIn(
-        uint tokenBalanceIn,
-        uint tokenWeightIn,
-        uint tokenBalanceOut,
-        uint tokenWeightOut,
-        uint tokenAmountIn,
-        uint swapFee
-    )
-        internal pure
-        returns (uint tokenAmountOut)
-    {
-        uint weightRatio = bdiv(tokenWeightIn, tokenWeightOut);
-        uint adjustedIn = bsub(BONE, swapFee);
+        uint256 tokenBalanceIn,
+        uint256 tokenWeightIn,
+        uint256 tokenBalanceOut,
+        uint256 tokenWeightOut,
+        uint256 tokenAmountIn,
+        uint256 swapFee
+    ) internal pure returns (uint256 tokenAmountOut) {
+        uint256 weightRatio = bdiv(tokenWeightIn, tokenWeightOut);
+        uint256 adjustedIn = bsub(BONE, swapFee);
         adjustedIn = bmul(tokenAmountIn, adjustedIn);
-        uint y = bdiv(tokenBalanceIn, badd(tokenBalanceIn, adjustedIn));
-        uint foo = bpow(y, weightRatio);
-        uint bar = bsub(BONE, foo);
+        uint256 y = bdiv(tokenBalanceIn, badd(tokenBalanceIn, adjustedIn));
+        uint256 foo = bpow(y, weightRatio);
+        uint256 bar = bsub(BONE, foo);
         tokenAmountOut = bmul(tokenBalanceOut, bar);
         return tokenAmountOut;
     }
@@ -258,20 +225,17 @@ contract BMath is BBronze, BConst, BNum {
     // sF = swapFee                                                                              //
     **********************************************************************************************/
     function calcInGivenOut(
-        uint tokenBalanceIn,
-        uint tokenWeightIn,
-        uint tokenBalanceOut,
-        uint tokenWeightOut,
-        uint tokenAmountOut,
-        uint swapFee
-    )
-        internal pure
-        returns (uint tokenAmountIn)
-    {
-        uint weightRatio = bdiv(tokenWeightOut, tokenWeightIn);
-        uint diff = bsub(tokenBalanceOut, tokenAmountOut);
-        uint y = bdiv(tokenBalanceOut, diff);
-        uint foo = bpow(y, weightRatio);
+        uint256 tokenBalanceIn,
+        uint256 tokenWeightIn,
+        uint256 tokenBalanceOut,
+        uint256 tokenWeightOut,
+        uint256 tokenAmountOut,
+        uint256 swapFee
+    ) internal pure returns (uint256 tokenAmountIn) {
+        uint256 weightRatio = bdiv(tokenWeightOut, tokenWeightIn);
+        uint256 diff = bsub(tokenBalanceOut, tokenAmountOut);
+        uint256 y = bdiv(tokenBalanceOut, diff);
+        uint256 foo = bpow(y, weightRatio);
         foo = bsub(foo, BONE);
         tokenAmountIn = bsub(BONE, swapFee);
         tokenAmountIn = bdiv(bmul(tokenBalanceIn, foo), tokenAmountIn);
@@ -289,30 +253,27 @@ contract BMath is BBronze, BConst, BNum {
     // sF = swapFee                \                                              /              //
     **********************************************************************************************/
     function calcPoolOutGivenSingleIn(
-        uint tokenBalanceIn,
-        uint tokenWeightIn,
-        uint poolSupply,
-        uint totalWeight,
-        uint tokenAmountIn,
-        uint swapFee
-    )
-        internal pure
-        returns (uint poolAmountOut)
-    {
+        uint256 tokenBalanceIn,
+        uint256 tokenWeightIn,
+        uint256 poolSupply,
+        uint256 totalWeight,
+        uint256 tokenAmountIn,
+        uint256 swapFee
+    ) internal pure returns (uint256 poolAmountOut) {
         // Charge the trading fee for the proportion of tokenAi
         ///  which is implicitly traded to the other pool tokens.
         // That proportion is (1- weightTokenIn)
         // tokenAiAfterFee = tAi * (1 - (1-weightTi) * poolFee);
-        uint normalizedWeight = bdiv(tokenWeightIn, totalWeight);
-        uint zaz = bmul(bsub(BONE, normalizedWeight), swapFee); 
-        uint tokenAmountInAfterFee = bmul(tokenAmountIn, bsub(BONE, zaz));
+        uint256 normalizedWeight = bdiv(tokenWeightIn, totalWeight);
+        uint256 zaz = bmul(bsub(BONE, normalizedWeight), swapFee);
+        uint256 tokenAmountInAfterFee = bmul(tokenAmountIn, bsub(BONE, zaz));
 
-        uint newTokenBalanceIn = badd(tokenBalanceIn, tokenAmountInAfterFee);
-        uint tokenInRatio = bdiv(newTokenBalanceIn, tokenBalanceIn);
+        uint256 newTokenBalanceIn = badd(tokenBalanceIn, tokenAmountInAfterFee);
+        uint256 tokenInRatio = bdiv(newTokenBalanceIn, tokenBalanceIn);
 
         // uint newPoolSupply = (ratioTi ^ weightTi) * poolSupply;
-        uint poolRatio = bpow(tokenInRatio, normalizedWeight);
-        uint newPoolSupply = bmul(poolRatio, poolSupply);
+        uint256 poolRatio = bpow(tokenInRatio, normalizedWeight);
+        uint256 newPoolSupply = bmul(poolRatio, poolSupply);
         poolAmountOut = bsub(newPoolSupply, poolSupply);
         return poolAmountOut;
     }
@@ -328,29 +289,26 @@ contract BMath is BBronze, BConst, BNum {
     // sF = swapFee                               \      tW  /                                   //
     **********************************************************************************************/
     function calcSingleInGivenPoolOut(
-        uint tokenBalanceIn,
-        uint tokenWeightIn,
-        uint poolSupply,
-        uint totalWeight,
-        uint poolAmountOut,
-        uint swapFee
-    )
-        internal pure
-        returns (uint tokenAmountIn)
-    {
-        uint normalizedWeight = bdiv(tokenWeightIn, totalWeight);
-        uint newPoolSupply = badd(poolSupply, poolAmountOut);
-        uint poolRatio = bdiv(newPoolSupply, poolSupply);
-    
+        uint256 tokenBalanceIn,
+        uint256 tokenWeightIn,
+        uint256 poolSupply,
+        uint256 totalWeight,
+        uint256 poolAmountOut,
+        uint256 swapFee
+    ) internal pure returns (uint256 tokenAmountIn) {
+        uint256 normalizedWeight = bdiv(tokenWeightIn, totalWeight);
+        uint256 newPoolSupply = badd(poolSupply, poolAmountOut);
+        uint256 poolRatio = bdiv(newPoolSupply, poolSupply);
+
         //uint newBalTi = poolRatio^(1/weightTi) * balTi;
-        uint boo = bdiv(BONE, normalizedWeight); 
-        uint tokenInRatio = bpow(poolRatio, boo);
-        uint newTokenBalanceIn = bmul(tokenInRatio, tokenBalanceIn);
-        uint tokenAmountInAfterFee = bsub(newTokenBalanceIn, tokenBalanceIn);
-        // Do reverse order of fees charged in joinswap_ExternAmountIn, this way 
+        uint256 boo = bdiv(BONE, normalizedWeight);
+        uint256 tokenInRatio = bpow(poolRatio, boo);
+        uint256 newTokenBalanceIn = bmul(tokenInRatio, tokenBalanceIn);
+        uint256 tokenAmountInAfterFee = bsub(newTokenBalanceIn, tokenBalanceIn);
+        // Do reverse order of fees charged in joinswap_ExternAmountIn, this way
         //     ``` pAo == joinswap_ExternAmountIn(Ti, joinswap_PoolAmountOut(pAo, Ti)) ```
         //uint tAi = tAiAfterFee / (1 - (1-weightTi) * swapFee) ;
-        uint zar = bmul(bsub(BONE, normalizedWeight), swapFee);
+        uint256 zar = bmul(bsub(BONE, normalizedWeight), swapFee);
         tokenAmountIn = bdiv(tokenAmountInAfterFee, bsub(BONE, zar));
         return tokenAmountIn;
     }
@@ -367,32 +325,35 @@ contract BMath is BBronze, BConst, BNum {
     // eF = exitFee                        \     \      tW /       /                             //
     **********************************************************************************************/
     function calcSingleOutGivenPoolIn(
-        uint tokenBalanceOut,
-        uint tokenWeightOut,
-        uint poolSupply,
-        uint totalWeight,
-        uint poolAmountIn,
-        uint swapFee
-    )
-        internal pure
-        returns (uint tokenAmountOut)
-    {
-        uint normalizedWeight = bdiv(tokenWeightOut, totalWeight);
+        uint256 tokenBalanceOut,
+        uint256 tokenWeightOut,
+        uint256 poolSupply,
+        uint256 totalWeight,
+        uint256 poolAmountIn,
+        uint256 swapFee
+    ) internal pure returns (uint256 tokenAmountOut) {
+        uint256 normalizedWeight = bdiv(tokenWeightOut, totalWeight);
         // charge exit fee on the pool token side
         // pAiAfterExitFee = pAi*(1-exitFee)
-        uint poolAmountInAfterExitFee = bmul(poolAmountIn, bsub(BONE, EXIT_FEE));
-        uint newPoolSupply = bsub(poolSupply, poolAmountInAfterExitFee);
-        uint poolRatio = bdiv(newPoolSupply, poolSupply);
-    
+        uint256 poolAmountInAfterExitFee = bmul(
+            poolAmountIn,
+            bsub(BONE, EXIT_FEE)
+        );
+        uint256 newPoolSupply = bsub(poolSupply, poolAmountInAfterExitFee);
+        uint256 poolRatio = bdiv(newPoolSupply, poolSupply);
+
         // newBalTo = poolRatio^(1/weightTo) * balTo;
-        uint tokenOutRatio = bpow(poolRatio, bdiv(BONE, normalizedWeight));
-        uint newTokenBalanceOut = bmul(tokenOutRatio, tokenBalanceOut);
+        uint256 tokenOutRatio = bpow(poolRatio, bdiv(BONE, normalizedWeight));
+        uint256 newTokenBalanceOut = bmul(tokenOutRatio, tokenBalanceOut);
 
-        uint tokenAmountOutBeforeSwapFee = bsub(tokenBalanceOut, newTokenBalanceOut);
+        uint256 tokenAmountOutBeforeSwapFee = bsub(
+            tokenBalanceOut,
+            newTokenBalanceOut
+        );
 
-        // charge swap fee on the output token side 
+        // charge swap fee on the output token side
         //uint tAo = tAoBeforeSwapFee * (1 - (1-weightTo) * swapFee)
-        uint zaz = bmul(bsub(BONE, normalizedWeight), swapFee); 
+        uint256 zaz = bmul(bsub(BONE, normalizedWeight), swapFee);
         tokenAmountOut = bmul(tokenAmountOutBeforeSwapFee, bsub(BONE, zaz));
         return tokenAmountOut;
     }
@@ -409,37 +370,37 @@ contract BMath is BBronze, BConst, BNum {
     // eF = exitFee                                                                              //
     **********************************************************************************************/
     function calcPoolInGivenSingleOut(
-        uint tokenBalanceOut,
-        uint tokenWeightOut,
-        uint poolSupply,
-        uint totalWeight,
-        uint tokenAmountOut,
-        uint swapFee
-    )
-        internal pure
-        returns (uint poolAmountIn)
-    {
-
-        // charge swap fee on the output token side 
-        uint normalizedWeight = bdiv(tokenWeightOut, totalWeight);
+        uint256 tokenBalanceOut,
+        uint256 tokenWeightOut,
+        uint256 poolSupply,
+        uint256 totalWeight,
+        uint256 tokenAmountOut,
+        uint256 swapFee
+    ) internal pure returns (uint256 poolAmountIn) {
+        // charge swap fee on the output token side
+        uint256 normalizedWeight = bdiv(tokenWeightOut, totalWeight);
         //uint tAoBeforeSwapFee = tAo / (1 - (1-weightTo) * swapFee) ;
-        uint zoo = bsub(BONE, normalizedWeight);
-        uint zar = bmul(zoo, swapFee); 
-        uint tokenAmountOutBeforeSwapFee = bdiv(tokenAmountOut, bsub(BONE, zar));
+        uint256 zoo = bsub(BONE, normalizedWeight);
+        uint256 zar = bmul(zoo, swapFee);
+        uint256 tokenAmountOutBeforeSwapFee = bdiv(
+            tokenAmountOut,
+            bsub(BONE, zar)
+        );
 
-        uint newTokenBalanceOut = bsub(tokenBalanceOut, tokenAmountOutBeforeSwapFee);
-        uint tokenOutRatio = bdiv(newTokenBalanceOut, tokenBalanceOut);
+        uint256 newTokenBalanceOut = bsub(
+            tokenBalanceOut,
+            tokenAmountOutBeforeSwapFee
+        );
+        uint256 tokenOutRatio = bdiv(newTokenBalanceOut, tokenBalanceOut);
 
         //uint newPoolSupply = (ratioTo ^ weightTo) * poolSupply;
-        uint poolRatio = bpow(tokenOutRatio, normalizedWeight);
-        uint newPoolSupply = bmul(poolRatio, poolSupply);
-        uint poolAmountInAfterExitFee = bsub(poolSupply, newPoolSupply);
+        uint256 poolRatio = bpow(tokenOutRatio, normalizedWeight);
+        uint256 newPoolSupply = bmul(poolRatio, poolSupply);
+        uint256 poolAmountInAfterExitFee = bsub(poolSupply, newPoolSupply);
 
         // charge exit fee on the pool token side
         // pAi = pAiAfterExitFee/(1-exitFee)
         poolAmountIn = bdiv(poolAmountInAfterExitFee, bsub(BONE, EXIT_FEE));
         return poolAmountIn;
     }
-
-
 }
