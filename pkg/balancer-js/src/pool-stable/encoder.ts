@@ -1,6 +1,10 @@
 import { defaultAbiCoder } from '@ethersproject/abi';
 import { BigNumberish } from '@ethersproject/bignumber';
 
+// 枚举
+// INIT=0
+// ExACT_TOKENS_IN_FOR_BPT_OUT=1
+// TOKEN_IN_FOR_EXACT_BPT_OUT=2
 export enum StablePoolJoinKind {
   INIT = 0,
   EXACT_TOKENS_IN_FOR_BPT_OUT,

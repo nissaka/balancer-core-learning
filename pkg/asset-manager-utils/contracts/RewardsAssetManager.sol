@@ -81,12 +81,6 @@ abstract contract RewardsAssetManager is IAssetManager {
         _;
     }
 
-    function _initialize(bytes32 pId) internal {
-        require(!isInitialized(), "Already initialised");
-        require(pId != bytes32(0), "Pool id cannot be empty");
-        _poolId = pId;
-    }
-
     function getVault() public view returns (IVault) {
         return _vault;
     }
@@ -95,12 +89,18 @@ abstract contract RewardsAssetManager is IAssetManager {
         return _poolId;
     }
 
-    function getPoolAddress() public view returns (address) {
-        return address(uint256(_poolId) >> (12 * 8));
-    }
-
     function isInitialized() public view returns (bool) {
         return getPoolId() != bytes32(0);
+    }
+
+    function _initialize(bytes32 pId) internal {
+        require(!isInitialized(), "Already initialised");
+        require(pId != bytes32(0), "Pool id cannot be empty");
+        _poolId = pId;
+    }
+
+    function getPoolAddress() public view returns (address) {
+        return address(uint256(_poolId) >> (12 * 8));
     }
 
     function getToken() public view override returns (IERC20) {

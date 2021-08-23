@@ -30,9 +30,8 @@ contract RebalancingRelayer is IBasePoolRelayer, AssetHelpers {
 
     // We start at a non-zero value to make EIP2200 refunds lower, meaning there'll be a higher chance of them being
     // fully effective.
-    bytes32 internal constant _EMPTY_CALLED_POOL = bytes32(
-        0x0000000000000000000000000000000000000000000000000000000000000001
-    );
+    bytes32 internal constant _EMPTY_CALLED_POOL =
+        bytes32(0x0000000000000000000000000000000000000000000000000000000000000001);
 
     modifier rebalance(
         bytes32 poolId,
@@ -79,6 +78,7 @@ contract RebalancingRelayer is IBasePoolRelayer, AssetHelpers {
         }
     }
 
+    // 运行完成 离开池之后 回调rebalance函数
     function exitPool(
         bytes32 poolId,
         address payable recipient,

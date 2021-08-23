@@ -1,6 +1,9 @@
 // SPDX-License-Identifier: agpl-3.0
 pragma solidity ^0.7.0;
 
+// library类似于面向对象语言中static函数 主要用来实现代码重用 可以被不同的智能合约调用
+// struct 结构体 用于表示复合型数据
+
 library DataTypes {
     // refer to the whitepaper, section 1.1 basic concepts for a formal description of these properties.
     struct ReserveData {
@@ -45,5 +48,9 @@ library DataTypes {
         uint256 data;
     }
 
-    enum InterestRateMode { NONE, STABLE, VARIABLE }
+    enum InterestRateMode {
+        NONE,
+        STABLE,
+        VARIABLE
+    }
 }

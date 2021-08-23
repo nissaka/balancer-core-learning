@@ -6,13 +6,14 @@ export enum PoolSpecialization {
   TwoTokenPool,
 }
 
+// type 会给一个类型起个新名字。 type 有时和 interface 很像
+// 但是可以作用于原始值（基本类型），联合类型，元组以及其它任何你需要手写的类型。
 export type FundManagement = {
   sender: string;
   fromInternalBalance: boolean;
   recipient: string;
   toInternalBalance: boolean;
 };
-
 // Swaps
 
 export enum SwapKind {

@@ -16,6 +16,7 @@ pragma solidity ^0.7.0;
 pragma experimental ABIEncoderV2;
 
 interface IAaveIncentivesController {
+    // 索取奖励
     function claimRewards(
         address[] calldata assets,
         uint256 amount,

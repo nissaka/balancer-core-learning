@@ -23,6 +23,7 @@ export async function getSigner(indexOrAddress: number | string = 0): Promise<Si
   }
 }
 
+// 扮演 模仿
 export async function impersonate(address: string, balance?: BigNumber): Promise<SignerWithAddress> {
   const hre = await import('hardhat');
   await hre.network.provider.request({ method: 'hardhat_impersonateAccount', params: [address] });

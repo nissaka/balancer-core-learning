@@ -8,6 +8,7 @@ pragma solidity ^0.7.0;
  * - Owned by the Aave Governance
  * @author Aave
  **/
+//  借贷池地址提供
 interface ILendingPoolAddressesProvider {
     event MarketIdSet(string newMarketId);
     event LendingPoolUpdated(address indexed newAddress);
