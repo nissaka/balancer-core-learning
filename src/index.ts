@@ -6,10 +6,13 @@ import { ethers } from 'ethers';
 dotenv.config();
 
 (async function () {
+  // 自身枚举属性 遍历返回
+  // pools详情在/src/lib/eth/balancer/pools.ts下
   const poolAddresses = Object.keys(pools).map(function (key) {
     return poolAddresses[key];
   });
 
+  // 返回 poolId swapFee tokens（balance, weight）
   const poolsInfo = await Promise.all(
     poolAddresses.map(async (poolId) => getPoolInfo(poolId)),
   );
@@ -18,6 +21,7 @@ dotenv.config();
 
   let pricePairs = { BAL: null, DAI: null, WETH: null };
 
+  // 得到对应的价格对
   poolsInfo.map(({ tokens }) => {
     const [first, second] = tokens;
 
@@ -49,6 +53,7 @@ dotenv.config();
 
   const paths = [];
 
+  // 遍历刚才的交易比率对 找到所有路径
   for (const token in pricePairs) {
     for (const bar in pricePairs[token]) {
       const first = { pair: [token, bar], price: pricePairs[token][bar] };
@@ -65,6 +70,7 @@ dotenv.config();
     }
   }
 
+  // 路径中的first second third进行累计相乘
   const rates = paths.map((path) => {
     return path
       .map(({ price }) => price)
@@ -107,7 +113,7 @@ dotenv.config();
   const vaultContract = getVaultContract();
 
   const args = [kind, swaps, assets, funds];
-
+  // 执行batchswap方法
   const result = await vaultContract.callStatic.queryBatchSwap(...args);
 
   console.log(
