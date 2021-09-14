@@ -24,13 +24,15 @@ import {
     TOKEN_PROGRAM_ID,
 } from "../utils/ids";
 import { getBigNumber } from "../utils/layouts";
+import { LIQUIDITY_POOLS } from "../utils/pools";
 import {
     _OPEN_ORDERS_LAYOUT_V2,
     Market,
     OpenOrders,
 } from "@project-serum/serum/lib/market";
 import { closeAccount } from "@project-serum/serum/lib/token-instructions";
-import { wrap_data, swap_data, place_data } from "./order.d.ts";
+import { wrap_data, swap_data, place_data } from "./type";
+import config from "../config/config";
 
 const memoInstruction = (memo: string) => {
     return new TransactionInstruction({
@@ -635,19 +637,20 @@ const place = async (
     );
 };
 
-const placeOrder = (type: string, data: wrap_data | swap_data | place_data) => {
+export const placeOrder = (type: string, data: any) => {
     const key = getUnixTs().toString();
     console.log("Making transaction...", key);
+
     switch (type) {
         case "wrap":
-            if (data.type !== wrap_data) {
-                console.log("error", "wrong wrap data");
-            }
+            // if (typeof data !== wrap_data) {
+            //     console.log("error", "wrong wrap data");
+            // }
             wrap(
                 data.web3,
                 data.wallet,
-                data.fromCoin.mintAddress,
-                data.toCoin.mintAddress,
+                data.fromCoinMintAddress,
+                data.toCoinMintAddress,
                 data.fromAddress,
                 data.toAddress,
                 data.fromCoinAmount
@@ -663,19 +666,20 @@ const placeOrder = (type: string, data: wrap_data | swap_data | place_data) => {
                     );
                 });
             break;
+
         case "swap":
-            if (data.type !== swap_data) {
-                console.log("error", "wrong swap data");
-            }
-            const poolInfo = Object.values(this.$accessor.liquidity.infos).find(
+            // if (data.type !== swap_data) {
+            //     console.log("error", "wrong swap data");
+            // }
+            const poolInfo = Object.values(LIQUIDITY_POOLS).find(
                 (p: any) => p.ammId === data.ammId
             );
             swap(
                 data.web3,
                 data.wallet,
-                data.poolInfo,
-                data.fromCoin.mintAddress,
-                data.toCoin.mintAddress,
+                poolInfo,
+                data.fromCoinMintAddress,
+                data.toCoinMintAddress,
                 data.fromAddress,
                 data.toAddress,
                 data.fromCoinAmount,
@@ -692,22 +696,23 @@ const placeOrder = (type: string, data: wrap_data | swap_data | place_data) => {
                     );
                 });
             break;
+
         case "place":
-            if (data.type !== place_data) {
-                console.log("error", "wrong place data");
-            }
+            // if (data.type !== place_data) {
+            //     console.log("error", "wrong place data");
+            // }
             place(
                 data.web3,
                 data.wallet,
                 data.market,
                 data.asks,
                 data.bids,
-                data.fromCoin.mintAdddress,
-                data.toCoin.mintAddress,
+                data.fromCoinMintAddress,
+                data.toCoinMintAddress,
                 data.fromAddress,
                 data.toAddress,
                 data.fromCoinAmount,
-                setting.slippage
+                config.setting.slippage
             )
                 .then((txid) => {
                     console.log("Transaction has been sent (place)", txid);
@@ -722,3 +727,4 @@ const placeOrder = (type: string, data: wrap_data | swap_data | place_data) => {
             break;
     }
 };
+

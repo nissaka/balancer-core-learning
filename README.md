@@ -1,5 +1,6 @@
 # Raydium 获取价格与swap使用
 ## 说明
+不太清楚py调node是怎么传参数的 暂时把私钥写死在全局参数里
 ### 获取价格 python实现
 python文件夹下
 
@@ -19,5 +20,5 @@ python文件夹下
 ### swap
 ```
 yarn install
-yarn build
 ```
+index.ts 文件中 列举了运行swap时需要的参数

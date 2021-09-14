@@ -9,6 +9,86 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@blocto/sdk@^0.2.11":
+  version "0.2.11"
+  resolved "https://registry.nlark.com/@blocto/sdk/download/@blocto/sdk-0.2.11.tgz#c95f4934f605bbe9a54d0f90bacdc3b4ea7e3e80"
+  integrity sha1-yV9JNPYFu+mlTQ+Qus3DtOp+PoA=
+  dependencies:
+    "@solana/web3.js" "^1.22.0"
+    bs58 "^4.0.1"
+    buffer "^6.0.3"
+    eip1193-provider "^1.0.1"
+    js-sha3 "^0.8.0"
+
+"@json-rpc-tools/provider@^1.5.5":
+  version "1.7.6"
+  resolved "https://registry.nlark.com/@json-rpc-tools/provider/download/@json-rpc-tools/provider-1.7.6.tgz#8a17c34c493fa892632e278fd9331104e8491ec6"
+  integrity sha1-ihfDTEk/qJJjLieP2TMRBOhJHsY=
+  dependencies:
+    "@json-rpc-tools/utils" "^1.7.6"
+    axios "^0.21.0"
+    safe-json-utils "^1.1.1"
+    ws "^7.4.0"
+
+"@json-rpc-tools/types@^1.7.6":
+  version "1.7.6"
+  resolved "https://registry.nlark.com/@json-rpc-tools/types/download/@json-rpc-tools/types-1.7.6.tgz#5abd5fde01364a130c46093b501715bcce5bdc0e"
+  integrity sha1-Wr1f3gE2ShMMRgk7UBcVvM5b3A4=
+  dependencies:
+    keyvaluestorage-interface "^1.0.0"
+
+"@json-rpc-tools/utils@^1.7.6":
+  version "1.7.6"
+  resolved "https://registry.nlark.com/@json-rpc-tools/utils/download/@json-rpc-tools/utils-1.7.6.tgz#67f04987dbaa2e7adb6adff1575367b75a9a9ba1"
+  integrity sha1-Z/BJh9uqLnrbat/xV1Nnt1qam6E=
+  dependencies:
+    "@json-rpc-tools/types" "^1.7.6"
+    "@pedrouid/environment" "^1.0.1"
+
+"@ledgerhq/devices@^6.3.0":
+  version "6.3.0"
+  resolved "https://registry.nlark.com/@ledgerhq/devices/download/@ledgerhq/devices-6.3.0.tgz#7ee59614198882311d1805912e368451527d05b2"
+  integrity sha1-fuWWFBmIgjEdGAWRLjaEUVJ9BbI=
+  dependencies:
+    "@ledgerhq/errors" "^6.2.0"
+    "@ledgerhq/logs" "^6.2.0"
+    rxjs "6"
+    semver "^7.3.5"
+
+"@ledgerhq/errors@^6.2.0":
+  version "6.2.0"
+  resolved "https://registry.nlark.com/@ledgerhq/errors/download/@ledgerhq/errors-6.2.0.tgz#7dc2b3bf6bdedccdaa1b97dccacfa912c4fc22f8"
+  integrity sha1-fcKzv2ve3M2qG5fcys+pEsT8Ivg=
+
+"@ledgerhq/hw-transport-webhid@^6.2.0":
+  version "6.4.1"
+  resolved "https://registry.nlark.com/@ledgerhq/hw-transport-webhid/download/@ledgerhq/hw-transport-webhid-6.4.1.tgz#81f0939c95154b47e00c7e95d6ccdfdbd3f883bc"
+  integrity sha1-gfCTnJUVS0fgDH6V1szf29P4g7w=
+  dependencies:
+    "@ledgerhq/devices" "^6.3.0"
+    "@ledgerhq/errors" "^6.2.0"
+    "@ledgerhq/hw-transport" "^6.3.0"
+    "@ledgerhq/logs" "^6.2.0"
+
+"@ledgerhq/hw-transport@^6.2.0", "@ledgerhq/hw-transport@^6.3.0":
+  version "6.3.0"
+  resolved "https://registry.nlark.com/@ledgerhq/hw-transport/download/@ledgerhq/hw-transport-6.3.0.tgz#4fc966b1a68c991c0a6b5384841f99c4f8304ce9"
+  integrity sha1-T8lmsaaMmRwKa1OEhB+ZxPgwTOk=
+  dependencies:
+    "@ledgerhq/devices" "^6.3.0"
+    "@ledgerhq/errors" "^6.2.0"
+    events "^3.3.0"
+
+"@ledgerhq/logs@^6.2.0":
+  version "6.2.0"
+  resolved "https://registry.nlark.com/@ledgerhq/logs/download/@ledgerhq/logs-6.2.0.tgz#9fb2d6f1811316697f7b3cc14607f6c608912419"
+  integrity sha1-n7LW8YETFml/ezzBRgf2xgiRJBk=
+
+"@pedrouid/environment@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.nlark.com/@pedrouid/environment/download/@pedrouid/environment-1.0.1.tgz#858f0f8a057340e0b250398b75ead77d6f4342ec"
+  integrity sha1-hY8PigVzQOCyUDmLderXfW9DQuw=
+
 "@project-serum/anchor@^0.11.1":
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/@project-serum/anchor/-/anchor-0.11.1.tgz#155bff2c70652eafdcfd5559c81a83bb19cec9ff"
@@ -48,6 +128,14 @@
     bn.js "^5.1.2"
     buffer-layout "^1.2.0"
 
+"@project-serum/sol-wallet-adapter@^0.2.5":
+  version "0.2.5"
+  resolved "https://registry.nlark.com/@project-serum/sol-wallet-adapter/download/@project-serum/sol-wallet-adapter-0.2.5.tgz#d949a8cc4d2f74e31e4f0205989703977689c76b"
+  integrity sha1-2UmozE0vdOMeTwIFmJcDl3aJx2s=
+  dependencies:
+    bs58 "^4.0.1"
+    eventemitter3 "^4.0.7"
+
 "@solana/buffer-layout@^3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@solana/buffer-layout/-/buffer-layout-3.0.0.tgz#b9353caeb9a1589cb77a1b145bcb1a9a93114326"
@@ -67,7 +155,83 @@
     buffer-layout "^1.2.0"
     dotenv "10.0.0"
 
-"@solana/web3.js@^1.17.0", "@solana/web3.js@^1.21.0", "@solana/web3.js@^1.26.0":
+"@solana/wallet-adapter-base@^0.5.2":
+  version "0.5.2"
+  resolved "https://registry.nlark.com/@solana/wallet-adapter-base/download/@solana/wallet-adapter-base-0.5.2.tgz#2a59f9978f83360da50f818a5c9f4740697fd334"
+  integrity sha1-Kln5l4+DNg2lD4GKXJ9HQGl/0zQ=
+  dependencies:
+    eventemitter3 "^4.0.7"
+
+"@solana/wallet-adapter-bitpie@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.nlark.com/@solana/wallet-adapter-bitpie/download/@solana/wallet-adapter-bitpie-0.1.2.tgz#f21ab41babb61812b08b5bda72137360197b3b48"
+  integrity sha1-8hq0G6u2GBKwi1vachNzYBl7O0g=
+
+"@solana/wallet-adapter-blocto@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.nlark.com/@solana/wallet-adapter-blocto/download/@solana/wallet-adapter-blocto-0.1.2.tgz#3c02d415919cf96953ba7fbba49b01a0f186c38a"
+  integrity sha1-PALUFZGc+WlTun+7pJsBoPGGw4o=
+  dependencies:
+    "@blocto/sdk" "^0.2.11"
+
+"@solana/wallet-adapter-coin98@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.nlark.com/@solana/wallet-adapter-coin98/download/@solana/wallet-adapter-coin98-0.1.2.tgz#8e9cca4e76baa971c436a87c2e043a20a2657a73"
+  integrity sha1-jpzKTna6qXHENqh8LgQ6IKJlenM=
+  dependencies:
+    "@types/bs58" "^4.0.1"
+    bs58 "^4.0.1"
+
+"@solana/wallet-adapter-ledger@^0.5.2":
+  version "0.5.2"
+  resolved "https://registry.nlark.com/@solana/wallet-adapter-ledger/download/@solana/wallet-adapter-ledger-0.5.2.tgz#ec6288fcbe6eb26571dc463a9799674dad8cd77d"
+  integrity sha1-7GKI/L5usmVx3EY6l5lnTa2M130=
+  dependencies:
+    "@ledgerhq/hw-transport" "^6.2.0"
+    "@ledgerhq/hw-transport-webhid" "^6.2.0"
+    "@types/w3c-web-hid" "^1.0.2"
+
+"@solana/wallet-adapter-mathwallet@^0.5.2":
+  version "0.5.2"
+  resolved "https://registry.nlark.com/@solana/wallet-adapter-mathwallet/download/@solana/wallet-adapter-mathwallet-0.5.2.tgz#22e31802ff4d02ecb002675da1e331851a922280"
+  integrity sha1-IuMYAv9NAuywAmddoeMxhRqSIoA=
+
+"@solana/wallet-adapter-phantom@^0.5.3":
+  version "0.5.3"
+  resolved "https://registry.nlark.com/@solana/wallet-adapter-phantom/download/@solana/wallet-adapter-phantom-0.5.3.tgz#193cd7cf03ab131dd15497468dac8e483dec5285"
+  integrity sha1-GTzXzwOrEx3RVJdGjayOSD3sUoU=
+
+"@solana/wallet-adapter-safepal@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.nlark.com/@solana/wallet-adapter-safepal/download/@solana/wallet-adapter-safepal-0.1.0.tgz#02c26f687040445214616a9dcbc612641e14edc9"
+  integrity sha1-AsJvaHBARFIUYWqdy8YSZB4U7ck=
+
+"@solana/wallet-adapter-slope@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.nlark.com/@solana/wallet-adapter-slope/download/@solana/wallet-adapter-slope-0.1.2.tgz#ea540bf981c268ad64f6dae589aaf1fe4b519ac6"
+  integrity sha1-6lQL+YHCaK1k9trliarx/ktRmsY=
+  dependencies:
+    "@types/bs58" "^4.0.1"
+    bs58 "^4.0.1"
+
+"@solana/wallet-adapter-solflare@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.nlark.com/@solana/wallet-adapter-solflare/download/@solana/wallet-adapter-solflare-0.2.3.tgz#f5ac70d43a649bb30f23646c1372cab212d9b078"
+  integrity sha1-9axw1Dpkm7MPI2RsE3LKshLZsHg=
+
+"@solana/wallet-adapter-sollet@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.nlark.com/@solana/wallet-adapter-sollet/download/@solana/wallet-adapter-sollet-0.6.0.tgz#66f79f59c99cb645545a25da3be0036323a0f0cb"
+  integrity sha1-ZvefWcmctkVUWiXaO+ADYyOg8Ms=
+  dependencies:
+    "@project-serum/sol-wallet-adapter" "^0.2.5"
+
+"@solana/wallet-adapter-solong@^0.5.2":
+  version "0.5.2"
+  resolved "https://registry.nlark.com/@solana/wallet-adapter-solong/download/@solana/wallet-adapter-solong-0.5.2.tgz#eb0d5074959c41cf2e23c0a2d4c326d3179b744e"
+  integrity sha1-6w1QdJWcQc8uI8Ci1MMm0xebdE4=
+
+"@solana/web3.js@^1.17.0", "@solana/web3.js@^1.21.0", "@solana/web3.js@^1.22.0", "@solana/web3.js@^1.26.0":
   version "1.26.0"
   resolved "https://registry.yarnpkg.com/@solana/web3.js/-/web3.js-1.26.0.tgz#bdd71616ce0ff40258dfe3a8d3a401ed5658fbae"
   integrity sha512-XXrE8srfA3ilMvpOs6WdGOIuY8epc0sF9Tl4M6BHNnfS5pbSQ+jJJdEhwi6AzURgXWWu//242Tq347iLSQhRqQ==
@@ -93,6 +257,13 @@
   integrity sha512-pqr857jrp2kPuO9uRjZ3PwnJTjoQy+fcdxvBTvHm6dkmEL9q+hDD/2j/0ELOBPtPnS8LjCX0gI9nbl8lVkadpg==
   dependencies:
     "@types/node" "*"
+
+"@types/bs58@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.nlark.com/@types/bs58/download/@types/bs58-4.0.1.tgz#3d51222aab067786d3bc3740a84a7f5a0effaa37"
+  integrity sha1-PVEiKqsGd4bTvDdAqEp/Wg7/qjc=
+  dependencies:
+    base-x "^3.0.6"
 
 "@types/connect@^3.4.33":
   version "3.4.35"
@@ -135,6 +306,11 @@
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.4.tgz#cd667bcfdd025213aafb7ca5915a932590acdcdc"
   integrity sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==
 
+"@types/w3c-web-hid@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.nlark.com/@types/w3c-web-hid/download/@types/w3c-web-hid-1.0.2.tgz#bdf2f813ffa7ccd1ca63aa218d680edddd839417"
+  integrity sha1-vfL4E/+nzNHKY6ohjWgO3d2DlBc=
+
 "@types/ws@^7.4.4":
   version "7.4.7"
   resolved "https://registry.yarnpkg.com/@types/ws/-/ws-7.4.7.tgz#f7c390a36f7a0679aa69de2d501319f4f8d9b702"
@@ -150,14 +326,14 @@ JSONStream@^1.3.5:
     jsonparse "^1.2.0"
     through ">=2.2.7 <3"
 
-axios@^0.21.4:
+axios@^0.21.0, axios@^0.21.4:
   version "0.21.4"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.4.tgz#c67b90dc0568e5c1cf2b0b858c43ba28e2eda575"
   integrity sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==
   dependencies:
     follow-redirects "^1.14.0"
 
-base-x@^3.0.2:
+base-x@^3.0.2, base-x@^3.0.6:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/base-x/-/base-x-3.0.8.tgz#1e1106c2537f0162e8b52474a557ebb09000018d"
   integrity sha512-Rl/1AWP4J/zRrk54hhlxH4drNxPJXYUaKffODVI53/dAsV4t9fBxyxYKAVPU1XBHxYwOWP9h9H0hM2MVw4YfJA==
@@ -219,7 +395,7 @@ buffer@6.0.1:
     base64-js "^1.3.1"
     ieee754 "^1.2.1"
 
-buffer@6.0.3, buffer@~6.0.3:
+buffer@6.0.3, buffer@^6.0.3, buffer@~6.0.3:
   version "6.0.3"
   resolved "https://registry.yarnpkg.com/buffer/-/buffer-6.0.3.tgz#2ace578459cc8fbe2a70aaa8f52ee63b6a74c6c6"
   integrity sha512-FTiCpNxtwiZZHEZbcbTIcZjERVICn9yq/pDFkTl95/AxzD1naBctN7YO68riM/gLSDY7sdrMby8hofADYuuqOA==
@@ -279,6 +455,13 @@ dotenv@10.0.0:
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-10.0.0.tgz#3d4227b8fb95f81096cdd2b66653fb2c7085ba81"
   integrity sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==
 
+eip1193-provider@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.nlark.com/eip1193-provider/download/eip1193-provider-1.0.1.tgz#420d29cf4f6c443e3f32e718fb16fafb250637c3"
+  integrity sha1-Qg0pz09sRD4/MucY+xb6+yUGN8M=
+  dependencies:
+    "@json-rpc-tools/provider" "^1.5.5"
+
 elliptic@^6.5.2:
   version "6.5.4"
   resolved "https://registry.yarnpkg.com/elliptic/-/elliptic-6.5.4.tgz#da37cebd31e79a1367e941b592ed1fbebd58abbb"
@@ -308,6 +491,11 @@ eventemitter3@^4.0.7:
   version "4.0.7"
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-4.0.7.tgz#2de9b68f6528d5644ef5c59526a1b4a07306169f"
   integrity sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==
+
+events@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.nlark.com/events/download/events-3.3.0.tgz#31a95ad0a924e2d2c419a813aeb2c4e878ea7400"
+  integrity sha1-Mala0Kkk4tLEGagTrrLE6HjqdAA=
 
 eyes@^0.1.8:
   version "0.1.8"
@@ -399,6 +587,11 @@ jsonparse@^1.2.0:
   resolved "https://registry.yarnpkg.com/jsonparse/-/jsonparse-1.3.1.tgz#3f4dae4a91fac315f71062f8521cc239f1366280"
   integrity sha1-P02uSpH6wxX3EGL4UhzCOfE2YoA=
 
+keyvaluestorage-interface@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.nlark.com/keyvaluestorage-interface/download/keyvaluestorage-interface-1.0.0.tgz#13ebdf71f5284ad54be94bd1ad9ed79adad515ff"
+  integrity sha1-E+vfcfUoStVL6UvRrZ7XmtrVFf8=
+
 lodash-es@^4.17.21:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
@@ -415,6 +608,13 @@ lower-case@^2.0.2:
   integrity sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==
   dependencies:
     tslib "^2.0.3"
+
+lru-cache@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.nlark.com/lru-cache/download/lru-cache-6.0.0.tgz#6d6fe6570ebd96aaf90fcad1dafa3b2566db3a94"
+  integrity sha1-bW/mVw69lqr5D8rR2vo7JWbbOpQ=
+  dependencies:
+    yallist "^4.0.0"
 
 minimalistic-assert@^1.0.0, minimalistic-assert@^1.0.1:
   version "1.0.1"
@@ -473,10 +673,22 @@ rpc-websockets@^7.4.2:
     bufferutil "^4.0.1"
     utf-8-validate "^5.0.2"
 
+rxjs@6:
+  version "6.6.7"
+  resolved "https://registry.nlark.com/rxjs/download/rxjs-6.6.7.tgz#90ac018acabf491bf65044235d5863c4dab804c9"
+  integrity sha1-kKwBisq/SRv2UEQjXVhjxNq4BMk=
+  dependencies:
+    tslib "^1.9.0"
+
 safe-buffer@^5.0.1:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.2.1.tgz#1eaf9fa9bdb1fdd4ec75f58f9cdb4e6b7827eec6"
   integrity sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==
+
+safe-json-utils@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.nlark.com/safe-json-utils/download/safe-json-utils-1.1.1.tgz#0e883874467d95ab914c3f511096b89bfb3e63b1"
+  integrity sha1-Dog4dEZ9lauRTD9REJa4m/s+Y7E=
 
 secp256k1@^4.0.2:
   version "4.0.2"
@@ -486,6 +698,13 @@ secp256k1@^4.0.2:
     elliptic "^6.5.2"
     node-addon-api "^2.0.0"
     node-gyp-build "^4.2.0"
+
+semver@^7.3.5:
+  version "7.3.5"
+  resolved "https://registry.nlark.com/semver/download/semver-7.3.5.tgz#0b621c879348d8998e4b0e4be94b3f12e6018ef7"
+  integrity sha1-C2Ich5NI2JmOSw5L6Us/EuYBjvc=
+  dependencies:
+    lru-cache "^6.0.0"
 
 snake-case@^3.0.4:
   version "3.0.4"
@@ -520,6 +739,11 @@ traverse-chain@~0.1.0:
   resolved "https://registry.yarnpkg.com/traverse-chain/-/traverse-chain-0.1.0.tgz#61dbc2d53b69ff6091a12a168fd7d433107e40f1"
   integrity sha1-YdvC1Ttp/2CRoSoWj9fUMxB+QPE=
 
+tslib@^1.9.0:
+  version "1.14.1"
+  resolved "https://registry.nlark.com/tslib/download/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
+  integrity sha1-zy04vcNKE0vK8QkcQfZhni9nLQA=
+
 tslib@^2.0.3:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
@@ -547,7 +771,12 @@ uuid@^8.3.0:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
 
-ws@^7.4.5:
+ws@^7.4.0, ws@^7.4.5:
   version "7.5.5"
   resolved "https://registry.yarnpkg.com/ws/-/ws-7.5.5.tgz#8b4bc4af518cfabd0473ae4f99144287b33eb881"
   integrity sha512-BAkMFcAzl8as1G/hArkxOxq3G7pjUqQ3gzYbLL0/5zNkph70e+lCoxBGnm6AW1+/aiNeV4fnKqZ8m4GZewmH2w==
+
+yallist@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.nlark.com/yallist/download/yallist-4.0.0.tgz#9bb92790d9c0effec63be73519e11a35019a3a72"
+  integrity sha1-m7knkNnA7/7GO+c1GeEaNQGaOnI=

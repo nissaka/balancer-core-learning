@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build":"tsc --project tsconfig.json",
+    "build": "tsc --project tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,6 +13,18 @@
   "dependencies": {
     "@project-serum/borsh": "^0.2.2",
     "@project-serum/serum": "^0.13.59",
+    "@solana/wallet-adapter-base": "^0.5.2",
+    "@solana/wallet-adapter-bitpie": "^0.1.2",
+    "@solana/wallet-adapter-blocto": "^0.1.2",
+    "@solana/wallet-adapter-coin98": "^0.1.2",
+    "@solana/wallet-adapter-ledger": "^0.5.2",
+    "@solana/wallet-adapter-mathwallet": "^0.5.2",
+    "@solana/wallet-adapter-phantom": "^0.5.3",
+    "@solana/wallet-adapter-safepal": "^0.1.0",
+    "@solana/wallet-adapter-slope": "^0.1.2",
+    "@solana/wallet-adapter-solflare": "^0.2.3",
+    "@solana/wallet-adapter-sollet": "^0.6.0",
+    "@solana/wallet-adapter-solong": "^0.5.2",
     "@solana/web3.js": "^1.26.0",
     "axios": "^0.21.4",
     "bignumber.js": "^9.0.1",

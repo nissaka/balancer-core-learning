@@ -1,8 +1,14 @@
+import { Market } from "@project-serum/serum";
 import { Connection } from "@solana/web3.js";
+
+interface Coin {
+    mintAddress: string;
+}
+
 
 export interface wrap_data {
     connection: Connection;
-    wallet;
+    wallet: any;
     fromCoin;
     toCoin;
     fromAddress: string;
@@ -12,10 +18,10 @@ export interface wrap_data {
 
 export interface swap_data {
     connection: Connection;
-    wallet;
+    wallet: any;
     ammId: string;
-    fromCoin;
-    toCoin;
+    fromCoin: any;
+    toCoin: any;
     fromAddress: string;
     toAddress: string;
     aIn: string;
@@ -24,14 +30,14 @@ export interface swap_data {
 
 export interface place_data {
     connection: Connection;
-    wallet;
-    market;
-    asks;
-    bids;
-    fromCoin;
-    toCoin;
-    fromAddress;
-    toAddress;
-    fromCoinAmount;
-    slippage;
+    wallet: any;
+    market: Market;
+    asks: any;
+    bids: any;
+    fromCoin: any;
+    toCoin: any;
+    fromAddress: string;
+    toAddress: string;
+    fromCoinAmount: string;
+    slippage: number;
 }
