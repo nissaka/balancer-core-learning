@@ -22,3 +22,7 @@ python文件夹下
 yarn install
 ```
 index.ts 文件中 列举了运行swap时需要的参数
+
+## wallet解决方案
+@solana/web3.js/src/connection.ts/ 中有sendTransaction方法
+https://docs.solana.com/zh/developing/clients/jsonrpc-api#sendtransaction

@@ -16,19 +16,22 @@ const keyPair: Ed25519Keypair = {
     publicKey,
     secretKey,
 };
-// 生成对应的wallet和connect对象 这一步可能生成的不对 文档中没找到对应的raydium接口
-const wallet = new solanaWeb3.Keypair(keyPair);
-const connect = new solanaWeb3.Connection(config.endpoint);
 
-// /src/utils/pools.ts 中的自动化证券商id
+// connect 作为连接网络的对象 主要功能是在发起交易之前获取最新块的hash等任务
+const connect = new solanaWeb3.Connection(config.endpoint);
+// wallet对象承载的比较多 比如publicKey等 发起交易也需要对应wallet的sendTransaction方法
+const wallet = new solanaWeb3.Keypair(keyPair);
+
+
+// 举例: /src/utils/pools.ts 中的自动化证券商id
 const ammId = "7PGNXqdhrpQoVS5uQs9gjT1zfY6MUzEeYHopRnryj7rm";
-// /src/utils/tokens.ts 对应币的mintAddress
+// 举例: /src/utils/tokens.ts 对应币的mintAddress
 const fromCoinMintAddress = "11111111111111111111111111111111";
 const toCoinMintAddress = "So11111111111111111111111111111111111111112";
 
-// tokenAccountPubkey.toBase58()
-const fromAddress = "";
-const toAddress = "";
+// 对应账户的publicKey(string)作为输入值 tokenAccountPubkey.toBase58()
+const fromAccount = "";
+const toAccount = "";
 
 // amount In Out
 const aIn = 0;
@@ -40,8 +43,8 @@ const data = {
     ammId,
     fromCoinMintAddress,
     toCoinMintAddress,
-    fromAddress,
-    toAddress,
+    fromAccount,
+    toAccount,
     aIn,
     aOut,
 };

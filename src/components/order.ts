@@ -651,8 +651,8 @@ export const placeOrder = (type: string, data: any) => {
                 data.wallet,
                 data.fromCoinMintAddress,
                 data.toCoinMintAddress,
-                data.fromAddress,
-                data.toAddress,
+                data.fromAccount,
+                data.toAccount,
                 data.fromCoinAmount
             )
                 .then((txid) => {
@@ -662,7 +662,7 @@ export const placeOrder = (type: string, data: any) => {
                     console.log(
                         "Error",
                         "wrap failed",
-                        `from ${data.fromAddress} to ${data.toAddress} Amount ${data.fromCoinAmount}`
+                        `from ${data.fromAccount} to ${data.toAccount} Amount ${data.fromCoinAmount}`
                     );
                 });
             break;
@@ -680,8 +680,8 @@ export const placeOrder = (type: string, data: any) => {
                 poolInfo,
                 data.fromCoinMintAddress,
                 data.toCoinMintAddress,
-                data.fromAddress,
-                data.toAddress,
+                data.fromAccount,
+                data.toAccount,
                 data.fromCoinAmount,
                 data.toCoinWithSlippage
             )
@@ -692,7 +692,7 @@ export const placeOrder = (type: string, data: any) => {
                     console.log(
                         "Error",
                         "swap failed",
-                        `from ${data.fromAddress} to ${data.toAddress} Amount ${data.fromCoinAmount}`
+                        `from ${data.fromAccount} to ${data.toAccount} Amount ${data.fromCoinAmount}`
                     );
                 });
             break;
@@ -709,8 +709,8 @@ export const placeOrder = (type: string, data: any) => {
                 data.bids,
                 data.fromCoinMintAddress,
                 data.toCoinMintAddress,
-                data.fromAddress,
-                data.toAddress,
+                data.fromAccount,
+                data.toAccount,
                 data.fromCoinAmount,
                 config.setting.slippage
             )
@@ -721,7 +721,7 @@ export const placeOrder = (type: string, data: any) => {
                     console.log(
                         "Error",
                         "place failed",
-                        `from ${data.fromAddress} to ${data.toAddress} Amount ${data.fromCoinAmount}`
+                        `from ${data.fromAccount} to ${data.toAccount} Amount ${data.fromCoinAmount}`
                     )
                 );
             break;
