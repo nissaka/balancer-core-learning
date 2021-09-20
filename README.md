@@ -1,5 +1,13 @@
 # Solana 学习
 
+本来是 youtube 上看见的 后来发现是 B 站直播 在这记录其中的文档和相关资料
+
+视频地址 https://www.bilibili.com/video/BV1JQ4y1R7dq
+
+浏览器 explorer.solana.com
+
+命令行文档 https://docs.solana.com/zh/cli/conventions
+
 ## 账户
 
 ### 私钥
