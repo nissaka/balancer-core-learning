@@ -32,7 +32,7 @@ import {
 } from "@project-serum/serum/lib/market";
 import { closeAccount } from "@project-serum/serum/lib/token-instructions";
 import { wrap_data, swap_data, place_data } from "./type";
-import config from "../config/config";
+import { config } from "../config/config";
 
 const memoInstruction = (memo: string) => {
     return new TransactionInstruction({
@@ -727,4 +727,3 @@ export const placeOrder = (type: string, data: any) => {
             break;
     }
 };
-

@@ -26,3 +26,13 @@ index.ts 文件中 列举了运行swap时需要的参数
 ## wallet解决方案
 @solana/web3.js/src/connection.ts/ 中有sendTransaction方法
 https://docs.solana.com/zh/developing/clients/jsonrpc-api#sendtransaction
+
+# 关于网页版和服务端
+1. wallet自带sendTransaction与@solana/web3.js中的sendAndConifrmTransaction
+2. import和require
+3. 网页端可以自行选择金额和对象，服务端需要列出相关信息
+ * getPrice
+ * getPairs
+ * getToken
+ * getPool
+ * swap
