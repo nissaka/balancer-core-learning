@@ -5,7 +5,8 @@ const {
     TransactionInstruction,
     SystemProgram,
     Transaction,
-    LAMPORTS_PER_SOL
+    LAMPORTS_PER_SOL,
+    PublicKey
 } = require("@solana/web3.js");
 const { nu64, struct, u8 } =require("buffer-layout")
 
@@ -132,12 +133,35 @@ const swapInstruction = (
 };
 
 // get teansaction
-const getTransaction = () => {
+const swap = async (
+    poolInfo,
+    fromCoinMint,
+    toCoinMint,
+    aIn,
+    aOut
+    ) => {
     const transaction = new Transaction().add(
-        SystemProgram.transfer({
-            fromPubkey: from.publicKey,
-            toPubkey: to.publicKey,
-            lamports: LAMPORTS_PER_SOL / 100,
-        })
+        swapInstruction(
+            new PublicKey(poolInfo.programId),
+            new PublicKey(poolInfo.ammId),
+            new PublicKey(poolInfo.ammAuthority),
+            new PublicKey(poolInfo.ammOpenOrders),
+            new PublicKey(poolInfo.ammTargetOrders),
+            new PublicKey(poolInfo.poolCoinTokenAccount),
+            new PublicKey(poolInfo.poolPcTokenAccount),
+            new PublicKey(poolInfo.serumProgramId),
+            new PublicKey(poolInfo.serumMarket),
+            new PublicKey(poolInfo.serumBids),
+            new PublicKey(poolInfo.serumAsks),
+            new PublicKey(poolInfo.serumEventQueue),
+            new PublicKey(poolInfo.serumCoinVaultAccount),
+            new PublicKey(poolInfo.serumPcVaultAccount),
+            new PublicKey(poolInfo.serumVaultSigner),
+            wrappedSolAccount ?? newFromTokenAccount,
+            wrappedSolAccount2 ?? newToTokenAccount,
+            owner,
+            Math.floor(getBigNumber(amountIn.toWei())),
+            Math.floor(getBigNumber(amountOut.toWei()))
+        )
     );
 };
