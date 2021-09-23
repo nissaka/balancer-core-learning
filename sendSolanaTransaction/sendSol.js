@@ -8,7 +8,7 @@ const web3 = require("@solana/web3.js");
         "confirmed"
     );
     // Uncomment the below command to test your connection to your node
-    //console.log(await connection.getEpochInfo())
+    console.log(await connection.getEpochInfo())
 
     // Generate a new random public key
     const from = web3.Keypair.generate();
