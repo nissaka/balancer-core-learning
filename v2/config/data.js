@@ -1,4 +1,4 @@
-export default dataV2 = {
+const dataV2 = {
     VERSION: "1.1.0",
     URL: "https://api.raydium.io",
     setting: { slippage: 0 },
@@ -9,3 +9,5 @@ export default dataV2 = {
     RAYDIUM_PRICE_ENDPOINT: "https://api.raydium.io/coin/price",
     RAYDIUM_FEE_ENDPOINT: "https://api.raydium.io/pairs",
 };
+
+export { dataV2 };
