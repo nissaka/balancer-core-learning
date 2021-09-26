@@ -1,4 +1,4 @@
-const { cloneDeep } = require("lodash-es");
+import { cloneDeep } from "lodash-es";
 
 export function getTokenByMintAddress(mintAddress) {
     if (mintAddress === NATIVE_SOL.mintAddress) {

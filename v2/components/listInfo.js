@@ -1,7 +1,7 @@
-const axios = require("axios");
-const { dataV2 } = require("../config/data");
-const { TOKENS, NATIVE_SOL, LP_TOKENS } = require("../utils/token");
-const { LIQUIDITY_POOLS } = require("../utils/pools");
+import axios from "axios";
+import { dataV2 } from "../config/data.js";
+import { TOKENS, NATIVE_SOL, LP_TOKENS } from "../utils/token.js";
+import { LIQUIDITY_POOLS } from "../utils/pools.js";
 
 const getPrice = async () => {
     return await axios.get(dataV2.RAYDIUM_PRICE_ENDPOINT).then((res) => {
@@ -17,6 +17,9 @@ const getPair = async () => {
 
 const getToken = (key) => {
     if (key) {
+        for (let i of NATIVE_SOL) {
+            console.log(i);
+        }
     } else {
         return {
             NATIVE_SOL: NATIVE_SOL,

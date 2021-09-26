@@ -1,4 +1,4 @@
-const { Connection, clusterApiUrl } = require("@solana/web3.js");
+import { Connection, clusterApiUrl } from "@solana/web3.js";
 
 // get Connection
 const getConnection = async (net_type) => {
