@@ -105,6 +105,7 @@ const swap = async (
     aIn,
     aOut
 ) => {
+    const transaction = new Transaction();
     const signers = [];
     const owner = wallet.publicKey;
 
@@ -166,7 +167,7 @@ const swap = async (
         transaction
     );
 
-    const transaction = new Transaction().add(
+    transaction.add(
         swapInstruction(
             new PublicKey(poolInfo.programId),
             new PublicKey(poolInfo.ammId),
@@ -215,4 +216,7 @@ const swap = async (
     ]);
 
     console.log(`txid: ${txid}`);
+    return txid;
 };
+
+export { swap };

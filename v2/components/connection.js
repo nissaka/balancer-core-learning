@@ -1,9 +1,9 @@
-import { Connection, clusterApiUrl } from "@solana/web3.js";
+import { Connection, clusterApiUrl, Keypair } from "@solana/web3.js";
 
 // get Connection
 const getConnection = async (net_type) => {
     // 'devnet' | 'testnet' | 'mainnet-beta'
-    if (!net_type) {
+    if (!net_type || net_type !== "testnet" || net_type !== "mainnet-beta") {
         net_type = "devnet";
     }
     const connection = new Connection(clusterApiUrl(net_type), "confirmed");
@@ -12,4 +12,9 @@ const getConnection = async (net_type) => {
     return connection;
 };
 
-export { getConnection };
+const getAccount = (keypair) => {
+    // 例子请见 /config/wallet
+    return Keypair(keypair);
+};
+
+export { getConnection, getAccount };
