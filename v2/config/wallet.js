@@ -1,4 +1,5 @@
-const {Keypair} = require("@solana/web3.js")
+// const {Keypair} = require("@solana/web3.js");
+import {Keypair} from "@solana/web3.js"
 
 // get wallet
 const keypair1={
@@ -36,7 +37,7 @@ const keypair2 ={
     ]
   }
 
-const from =Keypair(keypair1);
-const to=Keypair(keypair2);
+const from =new Keypair(keypair1);
+const to=new Keypair(keypair2);
 
 export {from, to}
